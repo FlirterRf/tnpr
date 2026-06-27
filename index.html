@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТНП — Ты Наш Партнер | Зарабатывай до 70% рефбека</title>
+    <style>
+        :root {
+            --bg-main: #090d16;
+            --bg-card: #131926;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --accent: #7c3aed; /* Фиолетовый неон */
+            --accent-glow: rgba(124, 58, 237, 0.4);
+            --tg-color: #24a1de; /* Цвет Telegram */
+            --success: #10b981; 
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #222c41;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(9, 13, 22, 0.8);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10rem 2rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        /* Соцсети кнопки */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn-tg {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--tg-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .btn-tg-channel {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            box-shadow: 0 4px 15px rgba(29, 78, 216, 0.4);
+        }
+
+        .btn-tg-admin {
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-tg:hover {
+            opacity: 0.9;
+        }
+
+        /* О проекте */
+        .section-padding {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+        }
+
+        .about-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .vip-badge {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            color: #000;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step-card {
+            background: rgba(9, 13, 22, 0.6);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .step-card h3 {
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Офферы */
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .offer-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .tag {
+            background: rgba(124, 58, 237, 0.15);
+            color: #a78bfa;
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-hot {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        .badge-disabled {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .offer-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .offer-perks {
+            list-style: none;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .offer-perks li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .offer-perks li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Информационная вставка про НПД */
+        .info-note {
+            background: rgba(124, 58, 237, 0.08);
+            border-left: 3px solid var(--accent);
+            padding: 0.6rem 0.8rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+        }
+
+        .info-note strong {
+            color: #fff;
+        }
+
+        .payout-info {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px dashed rgba(16, 185, 129, 0.3);
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .payout-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .payout-amount {
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .card-btn {
+            display: block;
+            text-align: center;
+            background: #1e293b;
+            color: white;
+            text-decoration: none;
+            padding: 0.9rem;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .card-btn:hover:not(.disabled) {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .card-btn.disabled {
+            background: #0f172a;
+            color: #475569;
+            border-color: #1e293b;
+            cursor: not-allowed;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">ТНП<span>•</span>Партнеры</a>
+            <nav class="nav-menu">
+                <a href="#about">О проекте</a>
+                <a href="#offers">Офферы</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>ТНП — <span>Ты Наш Партнер</span></h1>
+        <p>Уникальная витрина офферов с честным рефбеком. Мы отдаем до 70% своего дохода за каждый оформленный вами продукт. Используйте статус официального партнера банков и зарабатывайте без вложений!</p>
+        
+        <div class="social-buttons">
+            <a href="https://t.me/whitetemkA1" target="_blank" class="btn-tg btn-tg-channel">📢 Наш ТГ Канал</a>
+            <a href="https://t.me/script0W" target="_blank" class="btn-tg btn-tg-admin">💬 Написать в ЛС для Выплат</a>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="section-header">
+            <h2>Оформить самому или через ТНП? Давай посчитаем выгоду на пальцах:</h2>
+            <p>Почему работать напрямую с банками обычным способом — это потеря денег.</p>
+        </div>
+
+        <div class="about-box">
+            <div class="about-text">
+                <p>Многие думают: <em>«Зачем мне делать это через кого-то, если я могу просто зайти в приложение банка, скопировать ссылку "Приведи друга" и скинуть знакомым?»</em></p>
+                <p><strong>Ответ прост — это экономически невыгодно для тебя:</strong></p>
+                <p style="padding-left: 1rem;">1️⃣ <strong>Обычный статус:</strong> За оформление карты по стандартной программе «Приведи друга» банк платит копейки — обычно это 500–1000 ₽, причем часто не деньгами, а баллами или кэшбэком, который сложно вывести.</p>
+                <p style="padding-left: 1rem;">2️⃣ <strong>Статус Официального Партнера:</strong> Наш проект является официальным сертифицированным партнером крупнейших банков (Т-Банк, Альфа-Банк) и корпораций по специальным бизнес-договорам. Банки платят нам повышенные <strong>агентские тарифы</strong> (от 3 000 до 10 000 рублей живым кешем за продукт), потому что мы приводим клиентов в промышленных масштабах.</p>
+                <p><strong>В чем твоя выгода?</strong> Мы официально делимся этим крупным агентским бюджетом с тобой <strong>50 на 50</strong>. Вместо жалких 500 рублей бонусами от самого банка, ты забираешь этот бонус + <strong>до 6 000 рублей чистыми на любую карту лично от нас</strong>. Делать продукты напрямую — это просто добровольно отказываться от денег, которые банк уже выделил на тебя через нас.</p>
+                
+                <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
+                
+                <h3 style="color:#fff; margin-bottom:0.5rem;">🔥 Внимание: Карьерный рост для воркеров!</h3>
+                <p>Хочешь зарабатывать еще больше? Приводи друзей по нашей системе!</p>
+                <p>• <strong>Базовая ставка:</strong> Ты получаешь 50% рефбека за свои личные оформления.<br>
+                • <span class="vip-badge">👑 VIP-статус (70%)</span> Как только через тебя (по твоим рекомендациям) продукты оформят <strong>10 любых клиентов</strong>, твоя личная ставка навсегда вырастает до <strong>70%</strong> от нашего дохода! Ты становишься топ-менеджером нашей команды и забираешь практически всю прибыль себе.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h3>1. Выберите продукт</h3>
+                    <p>Изучите каталог ниже. Мы уже заранее посчитали и написали чистую сумму вашего бонуса на каждой карточке.</p>
+                </div>
+                <div class="step-card">
+                    <h3>2. Оформите заявку</h3>
+                    <p>Перейдите по кнопке оффера, оформите продукт на официальном сайте компании и выполните условия активации.</p>
+                </div>
+                <div class="step-card">
+                    <h3>3. Заберите деньги</h3>
+                    <p>Отправьте скриншот подтверждения в ЛС <a href="https://t.me/script0W" style="color:var(--accent); text-decoration:none;">@script0W</a>. После сверки с банком выплата ваша!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="offers" class="section-padding">
+        <div class="section-header">
+            <h2>Каталог партнерских программ</h2>
+            <p>Все суммы ниже — это чистые деньги, которые вы получите лично от нас на карту.</p>
+        </div>
+
+        <div class="offers-grid">
+
+            <!-- НОВЫЙ ОФФЕР 1: Т-Партнеры -->
+            <div class="offer-card" style="border-color: var(--warning);">
+                <div>
+                    <div class="card-top">
+                        <span class="tag" style="background:rgba(245, 158, 11, 0.15); color:var(--warning);">Бизнес и Инвест</span>
+                        <span class="badge-hot">ТОП ОФФЕР</span>
+                    </div>
+                    <h3 class="offer-title">Т-Партнеры: Реферальная программа</h3>
+                    <ul class="offer-perks">
+                        <li>Регистрация в официальной программе Т-Партнеры</li>
+                        <li>Получение статуса официального партнера банка</li>
+                        <li>Доступ к личным финансовым инструментам маркетинга</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус:</span>
+                        <span class="payout-amount" style="color:var(--warning);">6 000 ₽</span>
+                    </div>
+                    <a href="https://t-cpa.ru/1mwtXD" target="_blank" class="card-btn" style="background:var(--warning); color:#000; font-weight:700;">Стать партнером</a>
+                </div>
+            </div>
+
+            <!-- НОВЫЙ ОФФЕР 2: Т-Банк HR / Работа -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Работа и Карьера</span></div>
+                    <h3 class="offer-title">Т-Банк — HR / Оформление</h3>
+                    <ul class="offer-perks">
+                        <li>Официальное трудоустройство в штат Т-Банка</li>
+                        <li>Свободный или стабильный график на выбор</li>
+                        <li>Обучение, поддержка и карьерный рост</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус:</span>
+                        <span class="payout-amount">5 000 ₽</span>
+                    </div>
+                    <a href="https://t-cpa.ru/3Q6ov5" target="_blank" class="card-btn">Устроиться на работу</a>
+                </div>
+            </div>
+
+            <!-- НОВЫЙ ОФФЕР 3: Альфа-Деньги -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Займы под 0%</span></div>
+                    <h3 class="offer-title">МФО «Альфа-Деньги»</h3>
+                    <ul class="offer-perks">
+                        <li>Суммы от 2 000 до 100 000 рублей на любой срок</li>
+                        <li>Быстрое оформление онлайн за 5 минут</li>
+                        <li>Возможность пролонгации займа</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">до 2 000 ₽</span>
+                    </div>
+                    <a href="https://t-cpa.ru/45znn8" target="_blank" class="card-btn">Получить займ</a>
+                </div>
+            </div>
+
+            <!-- НОВЫЙ ОФФЕР 4: Привет, сосед! -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Займы под 0%</span></div>
+                    <h3 class="offer-title">МФО «Привет, сосед!»</h3>
+                    <ul class="offer-perks">
+                        <li>Займы от 1 000 до 30 000 рублей</li>
+                        <li>Срок займа от 5 до 30 дней</li>
+                        <li>Первый займ новым клиентам под 0%</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус:</span>
+                        <span class="payout-amount">1 400 ₽</span>
+                    </div>
+                    <a href="https://t-cpa.ru/2OLByp" target="_blank" class="card-btn">Получить займ</a>
+                </div>
+            </div>
+
+            <!-- 1. Т-Банк Platinum -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Т-Банк</span></div>
+                    <h3 class="offer-title">Кредитная карта Platinum</h3>
+                    <ul class="offer-perks">
+                        <li>Бесплатное обслуживание НАВСЕГДА</li>
+                        <li>Удобный лимит и беспроцентный период</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">2 500 ₽</span>
+                    </div>
+                    <a href="https://tbank.ru/baf/4lwTrtA5sC0" target="_blank" class="card-btn">Оформить карту</a>
+                </div>
+            </div>
+
+            <!-- 2. Т-Банк Black -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top">
+                        <span class="tag">Т-Банк</span>
+                        <span class="badge-hot">АКЦИЯ ДО 30.06</span>
+                    </div>
+                    <h3 class="offer-title">Дебетовая карта Black</h3>
+                    <ul class="offer-perks">
+                        <li>+500 ₽ на счет от самого банка</li>
+                        <li>Кэшбэк рублями каждый месяц</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">1 500 ₽</span>
+                    </div>
+                    <a href="https://tbank.ru/baf/57FgJyT236F" target="_blank" class="card-btn">Оформить карту</a>
+                </div>
+            </div>
+
+            <!-- 3. Т-Банк Бизнес -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Бизнес</span></div>
+                    <h3 class="offer-title">Т-Бизнес: Открытие ИП / ООО</h3>
+                    <ul class="offer-perks">
+                        <li>3 месяца обслуживания абсолютно бесплатно</li>
+                        <li>Помощь в онлайн-регистрации без госпошлины</li>
+                    </ul>
+                    <div class="info-note">
+                        <strong>Подробно:</strong> Чтобы полностью избежать налогов при отсутствии деятельности и вести счет бесплатно, выбирайте специальный налоговый режим <strong>ИП на НПД (самозанятость)</strong> при оформлении.
+                    </div>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">3 500 ₽</span>
+                    </div>
+                    <a href="https://tbank.ru/baf/45sKM0bP6Dt" target="_blank" class="card-btn">Открыть счет</a>
+                </div>
+            </div>
+
+            <!-- 4. Т-Банк Инвестиции -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Инвестиции</span></div>
+                    <h3 class="offer-title">Т-Инвестиции</h3>
+                    <ul class="offer-perks">
+                        <li>Подарочная акция до 5 000 ₽ от банка</li>
+                        <li>Покупка ценных бумаг за пару кликов</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">50% от акции</span>
+                    </div>
+                    <a href="https://tbank.ru/baf/9V8vGrlM0z2" target="_blank" class="card-btn">Открыть счет</a>
+                </div>
+            </div>
+
+            <!-- 5. Альфа-Банк Альфа-Карта -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Альфа-Банк</span></div>
+                    <h3 class="offer-title">Дебетовая Альфа-Карта</h3>
+                    <ul class="offer-perks">
+                        <li>+500 ₽ от банка после первой покупки</li>
+                        <li>Суперкэшбэк каждый месяц до 100%</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">1 000 ₽</span>
+                    </div>
+                    <a href="https://alfa.me/iwKt3p" target="_blank" class="card-btn">Оформить карту</a>
+                </div>
+            </div>
+
+            <!-- 6. Альфа-Банк Кредитная -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Альфа-Банк</span></div>
+                    <h3 class="offer-title">Кредитная карта Альфа</h3>
+                    <ul class="offer-perks">
+                        <li>365 дней без % на любые покупки в 1-й день</li>
+                        <li>Повышенный приветственный кэшбэк от банка</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">1 250 ₽</span>
+                    </div>
+                    <a href="https://alfa.me/_TXQ4d" target="_blank" class="card-btn">Оформить карту</a>
+                </div>
+            </div>
+
+            <!-- 7. Альфа Бизнес -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Бизнес</span></div>
+                    <h3 class="offer-title">Альфа-Бизнес: Счет для ИП/ООО</h3>
+                    <ul class="offer-perks">
+                        <li>+7 000 баллов (рублей) на счет от банка</li>
+                        <li>Бесплатное открытие и онлайн-бухгалтерия</li>
+                    </ul>
+                    <div class="info-note">
+                        <strong>Подробно:</strong> Открывайте <strong>ИП на НПД</strong>. Этот формат самозанятости освобождает вас от фиксированных страховых взносов и обязательных налогов, если по счету нет оборотов.
+                    </div>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">3 500 ₽</span>
+                    </div>
+                    <a href="https://alfa.me/-Cz0ht" target="_blank" class="card-btn">Открыть счет</a>
+                </div>
+            </div>
+
+            <!-- 8. Альфа Инвестиции -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Инвестиции</span></div>
+                    <h3 class="offer-title">Альфа-Инвестиции</h3>
+                    <ul class="offer-perks">
+                        <li>Подарочная акция от банка до 10 000 ₽</li>
+                        <li>0 ₽ за открытие и обслуживание счета</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">1 500 ₽</span>
+                    </div>
+                    <a href="https://alfa.me/DSJrlW" target="_blank" class="card-btn">Открыть счет</a>
+                </div>
+            </div>
+
+            <!-- 9. Яндекс Смена -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top">
+                        <span class="tag">Работа</span>
+                        <span class="badge-disabled">ВРЕМЕННО НЕДОСТУПНО</span>
+                    </div>
+                    <h3 class="offer-title">Подработка в Яндекс Смена</h3>
+                    <ul class="offer-perks">
+                        <li>Выплаты на карту сразу после смены</li>
+                        <li>Свободный график, подработки от 4 часов</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Выплаты приостановлены:</span>
+                        <span class="payout-amount">—</span>
+                    </div>
+                    <a href="#" class="card-btn disabled" onclick="return false;">Оффер на паузе</a>
+                </div>
+            </div>
+
+            <!-- 10. Яндекс Еда -->
+            <div class="offer-card">
+                <div>
+                    <div class="card-top"><span class="tag">Работа</span></div>
+                    <h3 class="offer-title">Курьер в Яндекс Еду</h3>
+                    <ul class="offer-perks">
+                        <li>Доход до 10 000 ₽ за закрытие вакансии</li>
+                        <li>Работа в удобном районе, форма бесплатно</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="payout-info">
+                        <span class="payout-label">Ваш бонус (50%):</span>
+                        <span class="payout-amount">до 5 000 ₽</span>
+                    </div>
+                    <a href="https://ya.cc/t/ShzHdr-e8pacUw" target="_blank" class="card-btn">Подать заявку</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faq" class="section-padding">
+        <div class="section-header">
+            <h2>Часто задаваемые вопросы</h2>
+            <p>Всё, что вам нужно знать перед оформлением.</p>
+        </div>
+
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>Зачем вы делитесь деньгами?</h3>
+                <p>Мы работаем на объем. Нам выгоднее получить сотни лояльных партнеров, выплачивая им половину, чем сидеть без трафика. Это честный вин-вин формат.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Как получить выплату?</h3>
+                <p>После выполнения условий по офферу (например, совершения первой покупки по карте или выполнения первой смены) напишите админу в ЛС @script0W. Мы проверим отчет и сразу переведем ваш бонус.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Как узнать подробные условия по Яндекс Еде и Т-Банк Работе?</h3>
+                <p>Сумма выплаты зависит от города и количества выполненных условий (заказов/смен). Актуальную сетку тарифов, подробные условия по городам и инструкции вы можете запросить напрямую у админа в Telegram.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ТНП — Ты Наш Партнер. Все выплаты производятся администрацией вручную после сверки данных с банками-партнерами.</p>
+    </footer>
+
+</body>
+</html>
