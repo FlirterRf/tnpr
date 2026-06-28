@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ТНП — Ты Наш Партнер | Зарабатывай до 70% рефбека</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
     <style>
         :root {
             --bg-main: #090d16;
@@ -19,159 +21,42 @@
             --border: #222c41;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-main); color: var(--text-primary); line-height: 1.6; }
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
+        header { background-color: rgba(9, 13, 22, 0.8); backdrop-filter: blur(12px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--text-primary); text-decoration: none; letter-spacing: 1px; }
+        .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 
-        header {
-            background-color: rgba(9, 13, 22, 0.8);
-            backdrop-filter: blur(12px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
+        .nav-menu { display: flex; gap: 2rem; }
+        .nav-menu a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-menu a:hover { color: var(--text-primary); }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .hero { max-width: 1200px; margin: 0 auto; padding: 10rem 2rem 2rem 2rem; text-align: center; position: relative; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h1 span { background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; }
 
-        .logo-block {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .navbar-logo {
-            height: 45px; /* Высота логотипа */
-            width: auto;
-            filter: drop-shadow(0 0 5px rgba(124, 58, 237, 0.5));
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Hero */
-        .hero {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10rem 2rem 2rem 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background: var(--accent);
-            filter: blur(150px);
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 2.5rem auto;
-        }
-
-        /* Кнопки и блоки (остальной стиль сохранен без изменений) */
         .social-buttons { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .btn-tg { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--tg-color); color: white; text-decoration: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; transition: opacity 0.2s; }
-        .btn-tg-channel { background: linear-gradient(135deg, #3b82f6, #1d4ed8); box-shadow: 0 4px 15px rgba(29, 78, 216, 0.4); }
-        .btn-tg-admin { background: linear-gradient(135deg, #7c3aed, #5b21b6); box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4); }
+        .btn-tg-channel { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .btn-tg-admin { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
         .btn-tg:hover { opacity: 0.9; }
+
         .section-padding { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 3.5rem; }
-        .section-header h2 { font-size: 2.2rem; margin-bottom: 1rem; }
         .about-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 3rem; }
-        .about-text { font-size: 1.1rem; color: var(--text-secondary); text-align: left; max-width: 1000px; margin: 0 auto 2.5rem auto; }
-        .vip-badge { background: linear-gradient(90deg, #f59e0b, #d97706); color: #000; font-weight: bold; padding: 2px 8px; border-radius: 4px; display: inline-block; }
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
         .step-card { background: rgba(9, 13, 22, 0.6); border: 1px solid var(--border); padding: 2rem; border-radius: 16px; }
+
         .offers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
-        .offer-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; display: flex; flex-direction: column; transition: transform 0.3s, border-color 0.3s; }
-        .offer-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
-        .tag { background: rgba(124, 58, 237, 0.15); color: #a78bfa; padding: 0.3rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
-        .badge-hot { background: rgba(245, 158, 11, 0.15); color: var(--warning); padding: 0.3rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; animation: pulse 2s infinite; }
-        .badge-disabled { background: rgba(239, 68, 68, 0.15); color: var(--danger); padding: 0.3rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
-        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
-        .offer-title { font-size: 1.4rem; margin-bottom: 0.75rem; }
-        .offer-perks { list-style: none; margin-bottom: 1.2rem; flex-grow: 1; }
-        .offer-perks li { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .offer-perks li::before { content: '✓'; color: var(--success); font-weight: bold; }
-        .info-note { background: rgba(124, 58, 237, 0.08); border-left: 3px solid var(--accent); padding: 0.6rem 0.8rem; border-radius: 0 8px 8px 0; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.2rem; }
-        .payout-info { background: rgba(16, 185, 129, 0.08); border: 1px dashed rgba(16, 185, 129, 0.3); padding: 0.75rem 1rem; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .offer-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; display: flex; flex-direction: column; }
         .payout-amount { color: var(--success); font-weight: 700; font-size: 1.2rem; }
-        .card-btn { display: block; text-align: center; background: #1e293b; color: white; text-decoration: none; padding: 0.9rem; border-radius: 12px; font-weight: 600; border: 1px solid var(--border); transition: all 0.2s; }
-        .card-btn:hover:not(.disabled) { background: var(--accent); border-color: var(--accent); box-shadow: 0 4px 15px var(--accent-glow); }
-        .card-btn.disabled { background: #0f172a; color: #475569; border-color: #1e293b; cursor: not-allowed; }
-        .faq-grid { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
-        .faq-item { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 16px; }
+        .card-btn { display: block; text-align: center; background: #1e293b; color: white; padding: 0.9rem; border-radius: 12px; text-decoration: none; font-weight: 600; transition: 0.2s; }
+        .card-btn:hover { background: var(--accent); }
+
         footer { text-align: center; padding: 3rem 2rem; color: var(--text-secondary); border-top: 1px solid var(--border); margin-top: 5rem; font-size: 0.9rem; }
     </style>
 </head>
@@ -179,11 +64,7 @@
 
     <header>
         <div class="nav-container">
-            <a href="#" class="logo-block">
-                <img src="logo.png" alt="TNP" class="navbar-logo">
-                <div class="logo">ТНП<span>•</span>Партнеры</div>
-            </a>
-            
+            <a href="#" class="logo">ТНП<span>•</span>Партнеры</a>
             <nav class="nav-menu">
                 <a href="#about">О проекте</a>
                 <a href="#offers">Офферы</a>
@@ -194,12 +75,24 @@
 
     <section class="hero">
         <h1>ТНП — <span>Ты Наш Партнер</span></h1>
-        <p>Уникальная витрина офферов с честным рефбеком. Мы отдаем до 70% своего дохода за каждый оформленный вами продукт.</p>
+        <p>Уникальная витрина офферов с честным рефбеком. Зарабатывайте вместе с нами.</p>
         <div class="social-buttons">
             <a href="https://t.me/whitetemkA1" target="_blank" class="btn-tg btn-tg-channel">📢 Наш ТГ Канал</a>
             <a href="https://t.me/script0W" target="_blank" class="btn-tg btn-tg-admin">💬 Написать в ЛС для Выплат</a>
         </div>
     </section>
 
-    </body>
+    <section id="about" class="section-padding">
+        <div class="about-box">
+            </div>
+    </section>
+
+    <section id="offers" class="section-padding">
+        </section>
+
+    <footer>
+        <p>&copy; 2026 ТНП — Ты Наш Партнер.</p>
+    </footer>
+
+</body>
 </html>
